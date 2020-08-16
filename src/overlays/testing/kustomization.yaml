@@ -1,6 +1,6 @@
 bases:
 - ../../base
-namespace: ricardo-testing
+namespace: harley-testing
 patchesStrategicMerge:
 - nginx-as-loadbalancer.yaml
 resources:
