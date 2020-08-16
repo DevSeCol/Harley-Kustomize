@@ -1,2 +1,2 @@
-# Harley-Kustomize
-Kubernetes configuration using Kustomize
+# kustomize-ricardo
+Kustomize example
