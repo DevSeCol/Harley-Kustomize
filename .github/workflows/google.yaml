@@ -24,12 +24,12 @@ on:
 env:
   GKE_PROJECT: ${{ secrets.PROJECT_ID }}
   GITHUB_SHA: ${{ github.sha }}
-  GKE_ZONE: australia-southeast1
-  GKE_CLUSTER: devsecol-cluster
-  GKE_PREFIX: ricardo
-  IMAGE: ricardo-gke-test
+  GKE_ZONE: us-central1
+  GKE_CLUSTER: test1-cluster-harley
+  GKE_PREFIX: harley
+  IMAGE: harley-gke-test
   DEPLOYMENT_NAME: nginx-deployment
-  REGISTRY_HOSTNAME: asia.gcr.io
+  REGISTRY_HOSTNAME: gcr.io
 
 jobs:
   setup-build-publish-deploy:
@@ -39,7 +39,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./src
+        working-directory ./src
 
     steps:
 
