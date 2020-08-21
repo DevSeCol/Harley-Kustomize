@@ -104,7 +104,7 @@ jobs:
         echo "Differences between environments:"
         diff development.yaml testing.yaml || echo "There are differences between Development and Testing"
 
-        # Development deployment
+    # Development deployment
     - name: Update base container image
       run: |
         ../kustomize edit set image nginx=$REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE-development:${GITHUB_SHA}
