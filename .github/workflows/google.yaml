@@ -97,13 +97,9 @@ jobs:
     # Output with the differences between Development and Testing
     - name: Show differences between environments
       run: |
- 
         gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE --project $GKE_PROJECT
         kubectl kustomize overlays/development | tee development.yaml
-        
         kubectl kustomize overlays/testing | tee testing.yaml
-        
-
         echo "================"
         echo "Differences between environments:"
         diff development.yaml testing.yaml || echo "There are differences between Development and Testing"
@@ -118,12 +114,12 @@ jobs:
     - name: Deploy Development
       run: |
         kubectl apply -k overlays/development
-
         echo "================"
         echo "Deployment and services status in the Development environment:"
         kubectl rollout status deployment/$DEPLOYMENT_NAME -n $GKE_PREFIX-development
         kubectl get services -o wide -n $GKE_PREFIX-development
-    # Testing deployment
+ 
+      # Testing deployment
     - name: Update testing container image
       run: |
         ../kustomize edit set image nginx=$REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE-testing:${GITHUB_SHA}
@@ -133,7 +129,6 @@ jobs:
     - name: Deploy Testing
       run: |
         kubectl apply -k overlays/testing
-
         echo "================"
         echo "Deployment and services status in the Testing environment:"
         kubectl rollout status deployment/$DEPLOYMENT_NAME -n $GKE_PREFIX-testing
